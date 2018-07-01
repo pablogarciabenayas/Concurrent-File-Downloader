@@ -35,7 +35,7 @@ public class FileDownloader {
         directory.mkdir();
 		
 		InputStream in = website.openStream();
-//		Path pathOut = Paths.get("/home/pablo/Descargas/D/list.txt");
+
 		Path pathOut = Paths.get("./Downloads/list.txt");
 		Files.copy(in, pathOut, StandardCopyOption.REPLACE_EXISTING);
 		in.close();
@@ -43,7 +43,6 @@ public class FileDownloader {
 
 		
 		String line = "";
-//		BufferedReader reader = new BufferedReader(new FileReader("/home/pablo/Descargas/D/list.txt"));
 		BufferedReader reader = new BufferedReader(new FileReader("./Downloads/list.txt"));
 
 		while ((line = reader.readLine()) != null) {
@@ -76,7 +75,6 @@ public class FileDownloader {
 			t.start();
 		}
 		cdl.await();
-//		mergeFile("/home/pablo/Descargas/D/",fileName);
 		mergeFile("./Downloads",fileName);
 		deletePartFiles(fileName, numberOfParts);
 	}
@@ -115,7 +113,6 @@ public class FileDownloader {
 		nDownMax.acquire(); 
 		URL url = new URL(urlPart);
 		InputStream inputStream = url.openStream();
-//		Path outputPath = Paths.get("/home/pablo/Descargas/D/" + fileName);
 		Path outputPath = Paths.get("./Downloads/" + fileName);
 		Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);
 		//Suelta permiso de descarga
@@ -157,7 +154,6 @@ public class FileDownloader {
 
 	public void deletePartFiles(String filename, int parts) throws IOException {
 		for (int i = 0; i < parts; i++) {
-//			Path outputPath = Paths.get("/home/pablo/Descargas/D/" + filename+ ".part" + i);
 			Path outputPath = Paths.get("./Downloads/" + filename+ ".part" + i);
 			Files.delete(outputPath);
 		}
